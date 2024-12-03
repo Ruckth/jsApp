@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Report Table</title>
+    <style>
+        [popover] {
+            inset: unset;
+            /* set position */
+            bottom: acchor(top);
+            left: anchor(left);
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        th,
+        td {
+            border: 1px solid #ddd;
+            padding: 8px;
+        }
+
+        th {
+            background-color: #f2f2f2;
+            text-align: left;
+        }
+
+        tr:nth-child(even) {
+            background-color: #f9f9f9;
+        }
+
+        tr:hover {
+            background-color: #ddd;
+        }
+
+        .topper {
+            display: flex;
+            align-items: center;
+            margin-bottom: 2%;
+        }
+
+        .card {
+            border: 1px solid #000000;
+            padding: 10px;
+            flex: 1;
+            border-radius: 10px;
+        }
+
+        .header-dialog {
+            display: none;
+            position: absolute;
+            background-color: white;
+            border: 1px solid #ddd;
+            padding: 10px;
+            border-radius: 10px;
+        }
+
+        .container {
+            display: flex;
+            align-items: center;
+            flex: 1;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="topper">
+        <div class="container">
+            <h1 id="report-header" style="  margin-right: 10px;">Report Table</h1>
+
+        </div>
+        <!-- card -->
+        <div class="card" id="card">
+            <h2>Card</h2>
+            <p>Card content</p>
+            <button type="button" popovertarget="info" id="btn">info</button>
+            <!-- dialog -->
+            <div popover id="info" anchor="btn">
+                This is dialog content
+            </div>
+        </div>
+    </div>
+    </div>
+    <table>
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Name</th>
+                <th>Age</th>
+                <th>Department</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>1</td>
+                <td>John Doe</td>
+                <td>30</td>
+                <td>Sales</td>
+            </tr>
+            <tr>
+                <td>2</td>
+                <td>Jane Smith</td>
+                <td>25</td>
+                <td>Marketing</td>
+            </tr>
+            <tr>
+                <td>3</td>
+                <td>Sam Johnson</td>
+                <td>35</td>
+                <td>Development</td>
+            </tr>
+        </tbody>
+    </table>
+</body>
+
+</html>
