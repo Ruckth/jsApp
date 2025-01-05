@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<!-- import style -->
+<link rel="stylesheet" href="styles.css">
+
+<body>
+    <h1>JavaScript Topic: Function</h1>
+    <!-- Greet -->
+    <h3>1. Greet Dialog
+        <button onclick="greet()">Greet</button>
+    </h3>
+
+    <h2>2. Rock Paper Scissors Game</h2>
+    <!-- score -->
+    <div>
+        <p>User: <span id="user-score">0</span></p>
+        <p>Computer: <span id="computer-score">0</span></p>
+    </div>
+    <div>
+        <!-- Buttons for user input -->
+        <button onclick="playGame('rock')">Rock</button>
+        <button onclick="playGame('paper')">Paper</button>
+        <button onclick="playGame('scissors')">Scissors</button>
+        <!-- reset score & dialog-->
+        <button onclick="resetScoreDisplay(); showPopover();" id="resetButton">Reset Score</button>
+
+    </div>
+
+    <!-- Popover messages -->
+    <!-- greet -->
+    <div class="greet-dialog" popover>
+        Hello World from greet dialog
+        <img class="dialog-img" src="https://fps.cdnpk.net/images/home/subhome-ai.webp?w=649&h=649" alt="placeholder">
+        <button class="close-btn" onclick="closeDialog()">Close</button>
+    </div>
+    <!-- rock paper game -->
+    <div class="win" popover>
+        <h3>You win!</h3>
+        <p id="win-text"></p>
+    </div>
+    <div class="draw" popover>
+        <h3>It's a draw!</h3>
+        <p id="draw-text"></p>
+    </div>
+    <div class="lose" popover>
+        <h3>You lose!</h3>
+        <p id="lose-text"></p>
+    </div>
+    <!-- score is reset dialog -->
+    <div id="popover" class="reset-score" style="display: none;">
+        <h3>Score is reset!</h3>
+    </div>
+
+    <script>
+        // Score object to track game state
+        const score = {
+            user: 0,
+            computer: 0
+        };
+
+        // Show temporary popover message
+        function showPopover() {
+            const popover = document.getElementById('popover');
+            popover.style.display = 'block';
+            setTimeout(() => popover.style.display = 'none', 2000);
+        }
+
+        // Dialog control functions
+        function greet() {
+            document.querySelector('.greet-dialog').showPopover();
+        }
+
+        function closeDialog() {
+            document.querySelector('.greet-dialog').hidePopover();
+        }
+
+        // Get random computer choice
+        function randomChoice() {
+            const choices = ['rock', 'paper', 'scissors'];
+            return choices[Math.floor(Math.random() * choices.length)];
+        }
+
+        // Game winning combinations lookup
+        const winningCombos = {
+            rock: 'scissors',
+            paper: 'rock',
+            scissors: 'paper'
+        };
+
+        // Main game logic
+        function playGame(userChoice) {
+            const computerChoice = randomChoice();
+
+            // Hide any existing popovers
+            document.querySelectorAll('[popover]').forEach(p => p.hidePopover());
+
+            let result;
+            if (userChoice === computerChoice) {
+                result = 'draw';
+            } else if (winningCombos[userChoice] === computerChoice) {
+                result = 'win';
+                score.user++;
+            } else {
+                result = 'lose';
+                score.computer++;
+            }
+
+            // Show result popover
+            const popover = document.querySelector(`.${result}`);
+            popover.showPopover();
+            document.getElementById(`${result}-text`).innerText =
+                `Computer chose ${computerChoice} user: ${score.user} computer: ${score.computer}.`;
+
+            // Update storage and display
+            localStorage.setItem('score', JSON.stringify(score));
+            displayLocal();
+        }
+
+        // Load and display score from storage
+        function displayLocal() {
+            const localScore = JSON.parse(localStorage.getItem('score'));
+            Object.assign(score, localScore);
+        }
+
+        // Reset score to initial state
+        function resetScore() {
+            Object.assign(score, { user: 0, computer: 0 });
+            localStorage.setItem('score', JSON.stringify(score));
+        }
+
+
+    </script>
+</body>
+
+</html>

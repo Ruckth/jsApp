@@ -1,0 +1,115 @@
+.greet-dialog {
+    position: absolute;
+    background-color: rgba(255, 255, 255, 0.8);
+    /* Slightly transparent white */
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    /* Light border for a soft look */
+    padding: 20px;
+    /* Add more padding for better spacing */
+    border-radius: 15px;
+    /* Rounded corners */
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    /* Soft shadow for depth */
+    backdrop-filter: blur(10px);
+    /* Apply background blur effect */
+    font-family: 'Arial', sans-serif;
+    /* Choose a clean, modern font */
+    max-width: 600px;
+    /* Set a fixed width */
+    box-sizing: border-box;
+    /* Make padding count inside width */
+    text-align: center;
+    /* Center text inside */
+}
+
+
+.close-btn {
+    position: relative;
+    margin-top: 15px;
+    /* Adds space between text and button */
+    cursor: pointer;
+    font-size: 16px;
+    /* Adjust font size */
+    color: rgba(0, 0, 0, 0.7);
+    /* Darker color */
+    background-color: white;
+    /* White background */
+    border: 2px solid red;
+    /* Red border */
+    border-radius: 8px;
+    /* Rounded corners */
+    padding: 8px 16px;
+    /* Horizontal padding for more button space */
+    text-align: center;
+    /* Center the text */
+    font-weight: bold;
+    /* Make text bold */
+    transition: all 0.3s ease;
+    /* Smooth transition for hover effect */
+}
+
+.close-btn:hover {
+    background-color: red;
+    /* Red background on hover */
+    color: white;
+    /* White text color on hover */
+    border-color: darkred;
+    /* Darker red border on hover */
+}
+
+.dialog-img {
+    max-width: 500px;
+}
+
+/* Common styles for all game popovers */
+.win[popover],
+.lose[popover],
+.draw[popover],
+.reset-score {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: rgba(255, 255, 255, 0.95);
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    text-align: center;
+    min-width: 300px;
+}
+
+/* Specific styles for win popover */
+.win[popover] {
+    border: 3px solid #4CAF50;
+}
+
+.win[popover] h3 {
+    color: #4CAF50;
+}
+
+/* Specific styles for lose popover */
+.lose[popover] {
+    border: 3px solid #f44336;
+}
+
+.lose[popover] h3 {
+    color: #f44336;
+}
+
+/* Specific styles for draw popover */
+.draw[popover] {
+    border: 3px solid #2196F3;
+}
+
+.draw[popover] h3 {
+    color: #2196F3;
+}
+
+/* Reset score popover */
+.reset-score {
+    border: 3px solid #FF9800;
+}
+
+.reset-score h3 {
+    color: #FF9800;
+}
